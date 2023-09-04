@@ -1,0 +1,55 @@
+<div class="jumbotron jumbotron-fluid">
+  <div class="container">
+    <h1 class="display-4">Empleadas y Empleados</h1>
+    @{
+      if (ViewBag.PromedioEmpleados > -1)
+
+
+
+      {
+        <p class="lead">El promedio de antiguedad de los empleadas y empleados es @ViewBag.PromedioEmpleados años</p>
+      }
+
+      else
+
+      {
+        <p class="lead">No hay Empleados ni empleadas en la base</p>
+      }
+    }
+    <a class="btn btn-primary" href='@Url.Action("CrearEmpleado","Home")'>Agregar Nueva/o Empleada/o</a>
+  </div>
+</div>
+
+<table class="table">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Nombre</th>
+      <th scope="col">Antiguedad Laboral</th>
+      <th scope="col">Acciones</th>
+    </tr>
+  </thead>
+  <tbody>
+    @foreach (Empleado item in ViewBag.ListaEmpleados)
+
+
+
+
+
+
+
+    {
+      <tr>
+        <th scope="row">@item.IdEmpleado</th>
+        <td>@item.NombreEmpleado</td>
+        <td>@item.AntiguedadEmpleado</td>
+        <td>
+          <a class="btn btn-info" href='@Url.Action("VerDetalleEmpleado","Home", new {IdEmpleado = item.IdEmpleado})'>Ver
+            Detalle</a>
+          <a class="btn btn-danger"
+            href='@Url.Action("EliminarEmpleado","Home",new {IdEmpleado = item.IdEmpleado})'>Eliminar</a>
+        </td>
+      </tr>
+    }
+  </tbody>
+</table>

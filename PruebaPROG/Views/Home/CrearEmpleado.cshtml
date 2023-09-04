@@ -1,0 +1,42 @@
+<div class="mx-auto text-center col-6">
+    <div class="my-5">
+        <h3>Crear un Empleado/a</h3>
+    </div>
+    <form action="GuardarEmpleado" method="post">
+        <div class="mb-5">
+            <label class="form-label">Nombre</label>
+            <input class="form-control" type="text" name="NombreEmpleado">
+        </div>
+        <div class="mb-5">
+            <label class="form-label">Foto</label>
+            <input class="form-control" type="text" name="FotoEmpleado" required>
+        </div>
+        <div class="mb-5">
+            <label class="form-label">Sector</label>
+            <select class="form-control form-select form-select-lg" name="IdSector" required>
+                <option disabled value="-1">Seleccioná una Opción de la Lista</option>
+                @foreach (Sector s in ViewBag.ListaSectores)
+
+                {
+                    <option value="@s.IdSector">@s.NombreSector</option>
+                }
+            </select>
+        </div>
+        <div class="mb-5">
+            <label class="form-label">Antiguedad Empleado</label>
+            <input class="form-control" type="number" name="AntiguedadEmpleado" required>
+        </div>
+        <div class="my-5">
+            <button type="submit" class="btn btn-primary">Guardar</button>
+        </div>
+    </form>
+    @if (ViewBag.Error != null)
+    {
+        <div class="alert alert-danger fade show text-center" role="alert">
+            <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Danger:">
+                <use xlink:href="#exclamation-triangle-fill" />
+            </svg>
+            <strong>@ViewBag.Error</strong>
+        </div>
+    }
+</div>
